@@ -21,4 +21,22 @@ public class UserDaoImplTest {
         System.out.println(userDao.getUser(1));
     }
 
+    @Test
+    public void testAddUser() {
+
+        int id = userDao.addUser("chandu1","chandu1@ss.com");
+    }
+
+    @Test
+    public void testUpdateUser() {
+
+        int updateUser = userDao.updateUser("chandu2",5);
+    }
+
+    @Test
+    public void testRemoveUser() {
+
+        int deleteUser = userDao.removeUser(5);
+    }
+
 }
