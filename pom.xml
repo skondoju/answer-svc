@@ -11,6 +11,7 @@
   <properties>
     <spring.version>4.1.6.RELEASE</spring.version>
     <hsqldb.version>2.3.2</hsqldb.version>
+    <jackson.version>2.6.3</jackson.version>
   </properties>
 
   <dependencies>
@@ -64,12 +65,32 @@
       <scope>test</scope>
     </dependency>
 
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <!-- Need this for json to/from object -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+
   </dependencies>
 
   <build>
     <finalName>answer-svc</finalName>
 
     <plugins>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -79,7 +100,22 @@
           <target>1.7</target>
         </configuration>
       </plugin>
+
+      <plugin>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <version>9.2.11.v20150529</version>
+        <configuration>
+          <scanIntervalSeconds>10</scanIntervalSeconds>
+          <webApp>
+            <contextPath>/spring3</contextPath>
+          </webApp>
+        </configuration>
+      </plugin>
+
     </plugins>
+
+
   </build>
 
 </project>
